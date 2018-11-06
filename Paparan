@@ -1,0 +1,47 @@
+//Paparan pelajar
+public void view() {
+        bView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cursor result = myDb.getAllData();
+                if(result.getCount()==0){
+                    showMessage("Error", "No Data Found");
+                    return;
+                }
+                StringBuffer buffer = new StringBuffer();
+                while (result.moveToNext()) {
+                    buffer.append("No Matrik : "+result.getString(0)+"\n");
+                    buffer.append("Name : "+result.getString(1)+"\n");
+                    buffer.append("Kohort : "+result.getString(2)+"\n");
+                    buffer.append("Sem : "+result.getString(3)+"\n\n");
+
+                }
+                //show all data
+                showMessage("All Data",buffer.toString());
+            }
+        });
+    }
+
+//Paparan Markah
+public void papar() {
+        btnView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Cursor result = myDB.dapatsemuadata();
+                if(result.getCount()==0){
+                    showMessage("Error", "No Data Found");
+                  return;
+                }
+                StringBuffer buffer = new StringBuffer();
+                while (result.moveToNext()) {
+                    buffer.append("Id_Markah : "+result.getString(0)+"\n");
+                    buffer.append("No_Matrik : "+result.getString(1)+"\n");
+                    buffer.append("Markah : "+result.getString(2)+"\n");
+                    buffer.append("Subjek : "+result.getString(3)+"\n\n");
+
+                }
+                //show all data
+                showMessage("All Data",buffer.toString());
+            }
+        });
+    }
